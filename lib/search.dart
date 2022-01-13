@@ -36,7 +36,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           value: _amountSliderValue,
           max: 100000,
           min: 1000,
-          divisions: 100,
+          divisions: 99,
           label: _amountSliderValue.round().toString(),
           onChanged: (double value) {
             setState(() {
