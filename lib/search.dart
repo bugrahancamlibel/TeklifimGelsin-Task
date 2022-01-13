@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'result.dart';
 import 'model.dart';
 
-
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({Key? key}) : super(key: key);
 
@@ -12,7 +11,6 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-
   final url = "https://teklifimgelsin.com/api/BriefLoanOffer";
   double _amountSliderValue = 20000;
   double _maturitySliderValue = 36;
@@ -64,6 +62,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             });
           },
         ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(_amountSliderValue.round().toString() +
+              " TL  " +
+              _maturitySliderValue.round().toString() +
+              "Ay vadeli",
+            style: const TextStyle(fontSize: 20,fontStyle: FontStyle.normal,color: Colors.teal),
+
+          ),
+        ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
               textStyle: const TextStyle(fontSize: 20),
@@ -71,14 +79,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   const EdgeInsets.symmetric(horizontal: 40, vertical: 20)),
           onPressed: () async {
             final responseData = await postData();
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => ResultWidget(responseData: responseData)));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    ResultWidget(responseData: responseData)));
           },
           child: const Text('TeklifimGelsin'),
         ),
       ],
     );
   }
+
   Future<Response> postData() async {
     try {
       final response = await http.post(
@@ -96,7 +106,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       print("peki bu???");
       print(apiResponse.offers[0]);
       return apiResponse;
-
     } catch (er) {
       print(er);
       print("olmadı be!");

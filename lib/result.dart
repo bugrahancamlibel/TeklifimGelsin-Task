@@ -34,30 +34,36 @@ class BankOffer extends StatelessWidget {
       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(bankOffer.bank,style: const TextStyle(fontSize: 18, fontStyle: FontStyle.italic),),
-        Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  const Text("ORAN"),
-                  Text(bankOffer.rate.toString()),
-                ],
-              ),
-              Column(
-                children: [
-                  const Text("YILLIK GİDER"),
-                  Text(bankOffer.annualExpenseRate.toString()),
-                ],
-              ),
-              Column(
-                children: [
-                  const Text("YILLIK GİDER"),
-                  Text(bankOffer.annualExpenseRate.toString()),
-                ],
-              ),
-            ],
+        GestureDetector(
+
+          onTap: (){
+            print("Clicked on it");
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    const Text("ORAN"),
+                    Text(bankOffer.rate.toString()),
+                  ],
+                ),
+                Column(
+                  children: [
+                    const Text("YILLIK GİDER"),
+                    Text(bankOffer.annualExpenseRate.toString()),
+                  ],
+                ),
+                Column(
+                  children: [
+                    const Text("YILLIK GİDER"),
+                    Text(bankOffer.annualExpenseRate.toString()),
+                  ],
+                ),
+              ],
+            ),
           ),
         )
       ],
