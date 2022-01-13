@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'result.dart';
+import 'model.dart';
+
 
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({Key? key}) : super(key: key);
@@ -9,6 +12,8 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+
+  final url = "https://teklifimgelsin.com/api/BriefLoanOffer";
   double _amountSliderValue = 20000;
   double _maturitySliderValue = 36;
 
@@ -64,13 +69,38 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               textStyle: const TextStyle(fontSize: 20),
               padding:
                   const EdgeInsets.symmetric(horizontal: 40, vertical: 20)),
-          onPressed: () {
+          onPressed: () async {
+            final responseData = await postData();
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => ResultWidget()));
+                .push(MaterialPageRoute(builder: (context) => ResultWidget(responseData: responseData)));
           },
           child: const Text('TeklifimGelsin'),
         ),
       ],
     );
+  }
+  Future<Response> postData() async {
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: requestToJson(
+            Request(amount: 20000, monthlyPeriod: 24, n: 3, type: 0)),
+      );
+
+      final apiResponse = responseFromJson(response.body);
+      print(apiResponse);
+      print(apiResponse.totalOffers);
+      print("peki bu???");
+      print(apiResponse.offers[0]);
+      return apiResponse;
+
+    } catch (er) {
+      print(er);
+      print("olmadı be!");
+      return Response(totalOffers: -1, offers: []);
+    }
   }
 }
