@@ -81,7 +81,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             final responseData = await postData();
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
-                    ResultWidget(responseData: responseData)));
+                    ResultWidget(responseData: responseData, amount: _amountSliderValue.toInt(), maturity: _maturitySliderValue.toInt(),)));
           },
           child: const Text('TeklifimGelsin'),
         ),
