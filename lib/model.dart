@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 String requestToJson(Request data) => json.encode(data.toJson());
 
 class Request {
@@ -17,27 +16,24 @@ class Request {
   int n;
 
   Map<String, dynamic> toJson() => {
-    "amount": amount,
-    "monthly_period": monthlyPeriod,
-    "type": type,
-    "n": n,
-  };
+        "amount": amount,
+        "monthly_period": monthlyPeriod,
+        "type": type,
+        "n": n,
+      };
 }
-
 
 // To parse this JSON data, do
 //
 //     final response = responseFromJson(jsonString);
-
 
 Response responseFromJson(String str) => Response.fromJson(json.decode(str));
 
 String responseToJson(Response data) => json.encode(data.toJson());
 
 class Response {
-
   @override
-  String toString(){
+  String toString() {
     return json.encode(this);
   }
 
@@ -50,19 +46,19 @@ class Response {
   int totalOffers;
 
   factory Response.fromJson(Map<String, dynamic> json) => Response(
-    offers: List<Offer>.from(json["offers"].map((x) => Offer.fromJson(x))),
-    totalOffers: json["total_offers"],
-  );
+        offers: List<Offer>.from(json["offers"].map((x) => Offer.fromJson(x))),
+        totalOffers: json["total_offers"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "offers": List<dynamic>.from(offers.map((x) => x.toJson())),
-    "total_offers": totalOffers,
-  };
+        "offers": List<dynamic>.from(offers.map((x) => x.toJson())),
+        "total_offers": totalOffers,
+      };
 }
 
 class Offer {
   @override
-  String toString(){
+  String toString() {
     return json.encode(this);
   }
 
@@ -79,16 +75,16 @@ class Offer {
   double rate;
 
   factory Offer.fromJson(Map<String, dynamic> json) => Offer(
-    annualExpenseRate: json["annual_expense_rate"].toDouble(),
-    bank: json["bank"],
-    bankId: json["bank_id"],
-    rate: json["rate"].toDouble(),
-  );
+        annualExpenseRate: json["annual_expense_rate"].toDouble(),
+        bank: json["bank"],
+        bankId: json["bank_id"],
+        rate: json["rate"].toDouble(),
+      );
 
   Map<String, dynamic> toJson() => {
-    "annual_expense_rate": annualExpenseRate,
-    "bank": bank,
-    "bank_id": bankId,
-    "rate": rate,
-  };
+        "annual_expense_rate": annualExpenseRate,
+        "bank": bank,
+        "bank_id": bankId,
+        "rate": rate,
+      };
 }

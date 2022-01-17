@@ -114,7 +114,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 builder: (BuildContext context) => AlertDialog(
                   title: Text("UYARI"),
                   content: const Text(
-                    'Bankacılık Düzenleme ve Denetleme Kurumu(BDDK), 04.09.2020 tarihli kurul kararı ile 50.000 TL üzeri tüketici kredilerinde vade sınırını 36 aydan 24 aya indirmiştir. Lütfen aramanızı güncelleyin.',
+                    'Bankacılık Düzenleme ve Denetleme Kurumu(BDDK), '
+                        '04.09.2020 tarihli kurul kararı ile '
+                        '50.000 TL üzeri tüketici kredilerinde vade sınırını'
+                        ' 36 aydan 24 aya indirmiştir. Lütfen aramanızı güncelleyin.',
                     style: TextStyle(fontSize: 18),
                   ),
                   actions: <Widget>[
