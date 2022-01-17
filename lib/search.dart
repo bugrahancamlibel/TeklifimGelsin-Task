@@ -119,14 +119,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       );
 
       final apiResponse = responseFromJson(response.body);
-      print(apiResponse);
-      print(apiResponse.totalOffers);
-      print("peki bu???");
-      print(apiResponse.offers[0]);
       return apiResponse;
     } catch (er) {
-      print(er);
-      print("olmadı be!");
       return Response(totalOffers: -1, offers: []);
     }
   }

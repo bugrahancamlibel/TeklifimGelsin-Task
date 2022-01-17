@@ -23,7 +23,7 @@ class ResultWidget extends StatelessWidget {
         ),
         height:60,
         //color: Colors.deepOrange,
-        child: Center(child: Text(responseData.totalOffers.toString()+" teklif daha",style: TextStyle(fontSize: 20, color: Colors.white),)),
+        child: Center(child: Text(responseData.totalOffers.toString()+" teklif daha",style: const TextStyle(fontSize: 20, color: Colors.white),)),
       ),
       body: Center(
         child: ListView.builder(
@@ -57,7 +57,7 @@ class BankOffer extends StatelessWidget {
             'Faiz Oranı: '+bankOffer.rate.toString()+'\n'
             'Miktar: '+amount.toString()+'\n'
             'Vade: '+maturity.toString(),
-            style: TextStyle(fontSize: 18),
+            style: const TextStyle(fontSize: 18),
 
           ),
           actions: <Widget>[
@@ -117,8 +117,6 @@ class BankOffer extends StatelessWidget {
     double totalInterestRate = rate * 0.012;
     num monthlyPayment = amount * totalInterestRate *pow((1 +
         totalInterestRate), expiry) / (pow((1 + totalInterestRate), expiry) - 1);
-    print("WOW!");
-    print(monthlyPayment.toDouble().toString());
     return monthlyPayment.toDouble();
   }
 }
