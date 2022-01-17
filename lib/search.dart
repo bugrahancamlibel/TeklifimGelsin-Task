@@ -20,8 +20,18 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("KREDİ HESAPLAMA"),
-        const Text("Toplam Tutar"),
+        const Text("KREDİ HESAPLAMA",
+          style: TextStyle(
+            fontSize: 30,
+          ),
+        ),
+        const Spacer(),
+        const Text("Toplam Tutar",
+          textAlign: TextAlign.start,
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
         //Card(child: Text(_currentSliderValue.round().toString(),style: const TextStyle(fontSize: 20),),color: Colors.grey.shade100,shadowColor:Colors.transparent,),
         ListTile(
           title: Text(
@@ -42,7 +52,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             });
           },
         ),
-        const Text("Toplam Tutar"),
+        const Spacer(),
+        const Text("Vade Süresi",
+          textAlign: TextAlign.start,
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
         ListTile(
           title: Text(
             _maturitySliderValue.round().toString(),
@@ -72,6 +88,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
           ),
         ),
+        const Spacer(),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
               textStyle: const TextStyle(fontSize: 20),
@@ -85,6 +102,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           },
           child: const Text('TeklifimGelsin'),
         ),
+        const Spacer(),
       ],
     );
   }
