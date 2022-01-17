@@ -20,13 +20,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("KREDİ HESAPLAMA",
+        const Spacer(),
+        const Text(
+          "KREDİ HESAPLAMA",
           style: TextStyle(
             fontSize: 30,
           ),
         ),
         const Spacer(),
-        const Text("Toplam Tutar",
+        const Text(
+          "Toplam Tutar",
           textAlign: TextAlign.start,
           style: TextStyle(
             fontSize: 18,
@@ -53,7 +56,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           },
         ),
         const Spacer(),
-        const Text("Vade Süresi",
+        const Text(
+          "Vade Süresi",
           textAlign: TextAlign.start,
           style: TextStyle(
             fontSize: 18,
@@ -80,12 +84,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(_amountSliderValue.round().toString() +
-              " TL  " +
-              _maturitySliderValue.round().toString() +
-              "Ay vadeli",
-            style: const TextStyle(fontSize: 20,fontStyle: FontStyle.normal,color: Colors.teal),
-
+          child: Text(
+            _amountSliderValue.round().toString() +
+                " TL  " +
+                _maturitySliderValue.round().toString() +
+                "Ay vadeli",
+            style: const TextStyle(
+                fontSize: 20, fontStyle: FontStyle.normal, color: Colors.teal),
           ),
         ),
         const Spacer(),
@@ -95,10 +100,32 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 40, vertical: 20)),
           onPressed: () async {
-            final responseData = await postData();
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                    ResultWidget(responseData: responseData, amount: _amountSliderValue.toInt(), maturity: _maturitySliderValue.toInt(),)));
+            if (_amountSliderValue < 50000) {
+              final responseData = await postData();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ResultWidget(
+                        responseData: responseData,
+                        amount: _amountSliderValue.toInt(),
+                        maturity: _maturitySliderValue.toInt(),
+                      )));
+            } else {
+              showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: Text("UYARI"),
+                  content: const Text(
+                    'Bankacılık Düzenleme ve Denetleme Kurumu(BDDK), 04.09.2020 tarihli kurul kararı ile 50.000 TL üzeri tüketici kredilerinde vade sınırını 36 aydan 24 aya indirmiştir. Lütfen aramanızı güncelleyin.',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'OK'),
+                      child: const Text('OK'),
+                    ),
+                  ],
+                ),
+              );
+            }
           },
           child: const Text('TeklifimGelsin'),
         ),
