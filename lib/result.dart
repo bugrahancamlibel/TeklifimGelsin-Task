@@ -13,7 +13,7 @@ class ResultWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Gelsin")),
+      appBar: AppBar(title: Text(maturity.toString()+' ay vadeli '+amount.toString()+'TL için')),
       bottomNavigationBar: Container(
         margin: const EdgeInsets.all(12),
         decoration: const BoxDecoration(
@@ -48,11 +48,26 @@ class BankOffer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        print("Clicked on it");
-        monthlyPayment(bankOffer.rate, amount, maturity);
+      onTap: ()=> showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: Text(bankOffer.bank.toString()),
+          content: Text(
+            'Yıllık Gider: '+bankOffer.annualExpenseRate.toString()+'\n'
+            'Faiz Oranı: '+bankOffer.rate.toString()+'\n'
+            'Miktar: '+amount.toString()+'\n'
+            'Vade: '+maturity.toString(),
+            style: TextStyle(fontSize: 18),
 
-      },
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -67,9 +82,9 @@ class BankOffer extends StatelessWidget {
             children: [
               Text(bankOffer.bank,style: const TextStyle(fontSize: 18, fontStyle: FontStyle.italic),),
               Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(13.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Column(
                         children: [
@@ -80,7 +95,7 @@ class BankOffer extends StatelessWidget {
                       Column(
                         children: [
                           const Text("YILLIK GİDER"),
-                          Text(bankOffer.annualExpenseRate.toString()),
+                          Text(bankOffer.annualExpenseRate.toStringAsFixed(3)),
                         ],
                       ),
                       Column(
