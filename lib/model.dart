@@ -23,19 +23,11 @@ class Request {
       };
 }
 
-// To parse this JSON data, do
-//
-//     final response = responseFromJson(jsonString);
-
 Response responseFromJson(String str) => Response.fromJson(json.decode(str));
 
 String responseToJson(Response data) => json.encode(data.toJson());
 
 class Response {
-  @override
-  String toString() {
-    return json.encode(this);
-  }
 
   Response({
     required this.offers,

@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'result.dart';
 import 'model.dart';
 
+const url = "https://teklifimgelsin.com/api/BriefLoanOffer";
+
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({Key? key}) : super(key: key);
 
@@ -11,7 +13,6 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  final url = "https://teklifimgelsin.com/api/BriefLoanOffer";
   double _amountSliderValue = 20000;
   double _maturitySliderValue = 36;
 
@@ -100,8 +101,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 40, vertical: 20)),
           onPressed: () async {
-            if (_amountSliderValue < 50000) {
+            if (_amountSliderValue < 50000 || _amountSliderValue>50000 && _maturitySliderValue < 24) {
               final responseData = await postData();
+              /*if totaloffers == -1{
+                circular
+              }*/
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ResultWidget(
                         responseData: responseData,
@@ -112,7 +116,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               showDialog<String>(
                 context: context,
                 builder: (BuildContext context) => AlertDialog(
-                  title: Text("UYARI"),
+                  title: const Text("UYARI"),
                   content: const Text(
                     'Bankacılık Düzenleme ve Denetleme Kurumu(BDDK), '
                         '04.09.2020 tarihli kurul kararı ile '

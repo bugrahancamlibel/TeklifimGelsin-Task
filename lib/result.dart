@@ -145,13 +145,14 @@ class BankOffer extends StatelessWidget {
       ),
     );
   }
+}
 
-  double monthlyPayment(double rate, int amount, int expiry) {
-    double totalInterestRate = rate * 0.012;
-    num monthlyPayment = amount *
-        totalInterestRate *
-        pow((1 + totalInterestRate), expiry) /
-        (pow((1 + totalInterestRate), expiry) - 1);
-    return monthlyPayment.toDouble();
-  }
+
+double monthlyPayment(double rate, int amount, int expiry) {
+  double totalInterestRate = rate * 0.012;
+  num monthlyPayment = amount *
+      totalInterestRate *
+      pow((1 + totalInterestRate), expiry) /
+      (pow((1 + totalInterestRate), expiry) - 1);
+  return monthlyPayment.toDouble();
 }
