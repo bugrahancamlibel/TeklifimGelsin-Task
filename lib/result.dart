@@ -36,7 +36,7 @@ class ResultWidget extends StatelessWidget {
             style: const TextStyle(fontSize: 20, color: Colors.white),
           )),
         ),
-        body: Center(
+        body: responseData.totalOffers!=-1 ? Center(
           child: ListView.builder(
             itemCount: responseData.offers.length,
             itemBuilder: (BuildContext context, int index) {
@@ -48,7 +48,9 @@ class ResultWidget extends StatelessWidget {
               );
             },
           ),
-        ));
+        ) : const Center(
+          child: Text('Bir sorun oldu! Lütfen daha sonra tekrar deneyin'),),
+    );
   }
 }
 

@@ -103,15 +103,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           onPressed: () async {
             if (_amountSliderValue < 50000 || _amountSliderValue>50000 && _maturitySliderValue < 24) {
               final responseData = await postData();
-              /*if totaloffers == -1{
-                circular
-              }*/
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ResultWidget(
-                        responseData: responseData,
-                        amount: _amountSliderValue.toInt(),
-                        maturity: _maturitySliderValue.toInt(),
-                      )));
+                    responseData: responseData,
+                    amount: _amountSliderValue.toInt(),
+                    maturity: _maturitySliderValue.toInt(),
+                  )));
+
             } else {
               showDialog<String>(
                 context: context,
