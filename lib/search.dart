@@ -42,7 +42,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             _amountSliderValue.round().toString(),
             style: const TextStyle(fontSize: 20),
           ),
-          trailing: const Icon(Icons.pending_actions),
+          trailing: const Icon(Icons.money),
         ),
         Slider(
           value: _amountSliderValue,
@@ -69,7 +69,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             _maturitySliderValue.round().toString(),
             style: const TextStyle(fontSize: 20),
           ),
-          trailing: const Icon(Icons.pending_actions),
+          trailing: const Icon(Icons.timer),
         ),
         Slider(
           value: _maturitySliderValue,
