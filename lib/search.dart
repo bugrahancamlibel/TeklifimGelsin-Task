@@ -39,7 +39,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         //Card(child: Text(_currentSliderValue.round().toString(),style: const TextStyle(fontSize: 20),),color: Colors.grey.shade100,shadowColor:Colors.transparent,),
         ListTile(
           title: Text(
-            _amountSliderValue.round().toString(),
+            _amountSliderValue.round().toString()+' TL',
             style: const TextStyle(fontSize: 20),
           ),
           trailing: const Icon(Icons.money),
@@ -66,7 +66,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ),
         ListTile(
           title: Text(
-            _maturitySliderValue.round().toString(),
+            _maturitySliderValue.round().toString()+' Ay',
             style: const TextStyle(fontSize: 20),
           ),
           trailing: const Icon(Icons.timer),
